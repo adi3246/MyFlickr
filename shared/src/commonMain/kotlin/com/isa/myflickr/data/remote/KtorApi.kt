@@ -36,7 +36,7 @@ internal abstract class KtorApi {
             parameter("nojsoncallback", true)
             parameter("extras", "media")
             parameter("extras", "url_m")
-            parameter("per_page", 10)
+            parameter("per_page", 7)
 
         }
     }

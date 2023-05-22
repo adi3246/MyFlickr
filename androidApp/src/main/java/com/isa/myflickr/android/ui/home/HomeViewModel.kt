@@ -19,8 +19,7 @@ class HomeViewModel(
     val getPhotosUseCase: GetPhotosUseCase
 ): ViewModel(){
     var uiState by mutableStateOf(HomeScreenState())
-    private var currentPage = 0
-    private var refresh = false
+    private var currentPage = 1
 
     private val _searchWidgetState: MutableState<SearchWidgetState> =
         mutableStateOf(value = SearchWidgetState.CLOSED)
@@ -38,13 +37,9 @@ class HomeViewModel(
         _searchTextState.value = newValue
     }
 
-    fun isRefresh() {
-        refresh = true
-    }
-
     fun beginSearch() {
         val photos: List<Photo> = listOf()
-        currentPage = 0
+        currentPage = 1
         uiState = uiState.copy(
             photos = photos
         )
@@ -71,13 +66,7 @@ class HomeViewModel(
                 loading = true
             )
 
-            if (uiState.photos.size >= 21) {
-                uiState = uiState.copy(
-                    loading = false,
-                    refreshing = false,
-                    loadFinished = true
-                )
-            } else {
+            if (currentPage <= 3) {
                 try {
                     val resultPhotos = getPhotosUseCase(page = currentPage, name = finalName)
                     val photos = if (currentPage == 1) resultPhotos else uiState.photos + resultPhotos
@@ -98,6 +87,12 @@ class HomeViewModel(
                         errorMessage = "Could not load movies: ${error.localizedMessage}"
                     )
                 }
+            } else {
+                uiState = uiState.copy(
+                    loading = false,
+                    refreshing = false,
+                    loadFinished = true
+                )
             }
         }
     }

@@ -12,13 +12,14 @@ import shared
 struct HomeScreen: View {
     @StateObject var viewModel = HomeViewModel()
     @State private var searchTerm = ""
+    private var progressView = ProgressView()
     
     let gridColumns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
     
     var body: some View {
         NavigationStack{
             
-            ScrollView{
+            ScrollView {
                 LazyVGrid(columns: gridColumns, spacing: 16){
                     
                     ForEach(viewModel.photos, id: \.id){photo in
@@ -43,7 +44,13 @@ struct HomeScreen: View {
                 .navigationDestination(for: Photo.self){photo in
                     DetailScreen(photo: photo)
                 }
-                
+            }
+            .overlay {
+                if viewModel.noResult {
+                    Text("No result found")
+                } else {
+                    Text("No result found").hidden()
+                }
             }
             .refreshable {
                 Task {

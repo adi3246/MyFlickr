@@ -16,6 +16,7 @@ extension HomeScreen {
         
         @Published private(set) var photos:[Photo] = []
         @Published private(set) var isLoading: Bool = false
+        @Published private(set) var noResult: Bool = false
         
         private var currentPage = 1
         private var isRefresh = false
@@ -24,30 +25,36 @@ extension HomeScreen {
         func loadPhotos(name: String) async {
             let finalName = (name.isEmpty) ? "Electrolux" : name
             
-            if isLoading {
-                return
-            }
-            
-            do {
-                
-                let photos = try await getPhotosUseCase.invoke(page: Int32(currentPage), name: finalName)
-                isLoading = false
-                loadFinished = photos.isEmpty
-                
-                currentPage += 1
-                
-                if isRefresh {
-                    self.photos = photos
-                    isRefresh = false
-                } else {
-                    self.photos = self.photos + photos
+            if currentPage <= 3 {
+                if isLoading {
+                    return
                 }
-                
-            } catch {
+                isLoading = true
+                do {
+                    
+                    let photos = try await getPhotosUseCase.invoke(page: Int32(currentPage), name: finalName)
+                    isLoading = false
+                    loadFinished = photos.isEmpty
+                    
+                    currentPage += 1
+                    
+                    if isRefresh {
+                        self.photos = photos
+                        isRefresh = false
+                    } else {
+                        self.photos = self.photos + photos
+                    }
+                    
+                    noResult = photos.isEmpty
+                } catch {
+                    isLoading = false
+                    loadFinished = true
+                    
+                    print(error.localizedDescription)
+                }
+            } else {
                 isLoading = false
                 loadFinished = true
-                
-                print(error.localizedDescription)
             }
         }
         

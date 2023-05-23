@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.isa.myflickr.android.common.SearchWidgetState
 import com.isa.myflickr.domain.model.Photo
-import com.isa.myflickr.domain.usecase.GetPhotosUseCase
+import com.isa.myflickr.domain.use_case.GetPhotosUseCase
 import kotlinx.coroutines.launch
 
 /**

@@ -7,6 +7,8 @@ import io.ktor.client.request.parameter
 
 /**
  * Created by Isa Andi on 19/05/2023.
+ *
+ * A class to retrieve data from Flickr API
  */
 internal class FlickrService: KtorApi() {
 

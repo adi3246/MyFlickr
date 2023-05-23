@@ -7,6 +7,8 @@ import com.isa.myflickr.domain.repository.PhotoRepository
 
 /**
  * Created by Isa Andi on 19/05/2023.
+ *
+ *  An implementation for PhotoRepository
  */
 internal class PhotoRepositoryImpl(
     private val remoteDateSource: RemoteDataSource

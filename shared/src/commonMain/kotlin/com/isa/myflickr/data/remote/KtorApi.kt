@@ -11,6 +11,8 @@ import kotlinx.serialization.json.Json
 
 /**
  * Created by Isa Andi on 19/05/2023.
+ *
+ * A class to setup HTTP connection using Ktor
  */
 private const val BASE_URL = "https://api.flickr.com/"
 private const val API_KEY = "b2854ca780721de012d220dcbffc951d"

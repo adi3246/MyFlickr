@@ -5,6 +5,8 @@ import com.isa.myflickr.domain.model.Photo
 
 /**
  * Created by Isa Andi on 19/05/2023.
+ *
+ * A function to map data object from Data Layer to Domain Layer
  */
 internal fun PhotoResponse.toPhoto(): Photo {
     return Photo(

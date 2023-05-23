@@ -11,5 +11,4 @@ import org.koin.dsl.module
 val appModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { params -> DetailViewModel(post = params.get()) }
-    // viewModel { DetailViewModel(get()) }
 }

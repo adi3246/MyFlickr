@@ -13,6 +13,7 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
     }
     buildFeatures {
         compose = true
@@ -59,4 +60,5 @@ dependencies {
     implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
     implementation("androidx.navigation:navigation-compose:$navVersion")
     implementation ("com.google.code.gson:gson:2.10.1")
+    implementation ("androidx.multidex:multidex:2.0.1")
 }

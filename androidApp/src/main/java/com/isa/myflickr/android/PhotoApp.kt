@@ -63,12 +63,6 @@ fun PhotoApp() {
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            /*AppBar(
-                canNavigateBack = navController.previousBackStackEntry != null,
-                currentScreen = currentScreen,
-            ) {
-                navController.navigateUp()
-            }*/
             AppBar(
                 canNavigateBack = navController.previousBackStackEntry != null,
                 currentScreen = currentScreen,
@@ -102,7 +96,7 @@ fun PhotoApp() {
                 HomeScreen(
                     uiState = homeViewModel.uiState,
                     loadNextPhotos = {
-                        homeViewModel.loadMovies(forceReload = it, homeViewModel.searchTextState.value)
+                        homeViewModel.loadPhotos(forceReload = it, homeViewModel.searchTextState.value)
                     },
                     navigateToDetail = {
                         val post = Post(it.title, it.urlM).toString()

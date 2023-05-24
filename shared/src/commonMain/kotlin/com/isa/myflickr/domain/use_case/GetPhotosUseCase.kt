@@ -9,9 +9,9 @@ import com.isa.myflickr.domain.repository.PhotoRepository
  * A class to be use in Android and iOS view
  */
 class GetPhotosUseCase(
-    private val repository: PhotoRepository?
+    private val repository: PhotoRepository
 ) {
 
     @Throws(Exception::class)
-    suspend operator fun invoke(page: Int, name: String): List<Photo> = repository!!.getPhotos(page = page, name = name)
+    suspend operator fun invoke(page: Int, name: String): List<Photo> = repository.getPhotos(page = page, name = name)
 }

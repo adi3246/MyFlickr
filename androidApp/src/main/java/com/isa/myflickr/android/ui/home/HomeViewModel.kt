@@ -43,15 +43,18 @@ class HomeViewModel(
         uiState = uiState.copy(
             photos = photos
         )
-        loadMovies(forceReload = false, _searchTextState.value)
+        loadPhotos(forceReload = false, _searchTextState.value)
     }
 
     init {
-        loadMovies(forceReload = false, "Electrolux")
+        uiState = uiState.copy(
+            refreshing = true
+        )
+        loadPhotos(forceReload = false, "Electrolux")
     }
 
 
-    fun loadMovies(forceReload: Boolean = false, name: String){
+    fun loadPhotos(forceReload: Boolean = false, name: String){
         var finalName = name
         if (uiState.loading) return
         if (forceReload || name == "") {

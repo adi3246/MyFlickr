@@ -2,9 +2,14 @@ package com.isa.myflickr.domain.use_case
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import com.isa.myflickr.data.repository.FakePhotoRepository
+import com.isa.myflickr.data.repository.MockPhotoRepository
+import com.isa.myflickr.data.repository.PhotoRepositoryImpl
+import com.isa.myflickr.di.getSharedModules
 import com.isa.myflickr.domain.model.Photo
+import com.isa.myflickr.domain.repository.PhotoRepository
 import kotlinx.coroutines.runBlocking
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -14,13 +19,23 @@ import kotlin.test.Test
 class GetPhotosUseCaseTest {
 
     private lateinit var getPhotosUseCase: GetPhotosUseCase
-    private lateinit var fakeRepository: FakePhotoRepository
+    private lateinit var mockRepository: MockPhotoRepository
     private val photos = ArrayList<Photo>()
 
     @BeforeTest
     fun setUp() {
-        fakeRepository = FakePhotoRepository()
-        getPhotosUseCase = GetPhotosUseCase(fakeRepository)
+
+        mockRepository = MockPhotoRepository()
+        getPhotosUseCase = GetPhotosUseCase()
+
+        val domainModule = module {
+            single<PhotoRepository> { mockRepository }
+            factory { GetPhotosUseCase()}
+        }
+
+        startKoin {
+            modules(domainModule)
+        }
 
         photos.add(
             Photo(
@@ -54,7 +69,7 @@ class GetPhotosUseCaseTest {
                 500
             )
         )
-        fakeRepository.addTestPhotos(photos)
+        mockRepository.addTestPhotos(photos)
     }
 
     @Test

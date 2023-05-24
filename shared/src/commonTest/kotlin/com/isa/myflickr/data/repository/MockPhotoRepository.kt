@@ -6,7 +6,7 @@ import com.isa.myflickr.domain.repository.PhotoRepository
 /**
  * Created by Isa Andi on 22/05/2023.
  */
-class FakePhotoRepository : PhotoRepository {
+class MockPhotoRepository : PhotoRepository {
 
     private var photos = ArrayList<Photo>()
 

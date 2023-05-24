@@ -5,7 +5,6 @@ import com.isa.myflickr.data.remote.RemoteDataSource
 import com.isa.myflickr.data.repository.PhotoRepositoryImpl
 import com.isa.myflickr.domain.repository.PhotoRepository
 import com.isa.myflickr.domain.use_case.GetPhotosUseCase
-import com.isa.myflickr.domain.use_case.GetPhotosUseCaseIos
 import com.isa.myflickr.util.provideDispatcher
 import org.koin.dsl.module
 
@@ -29,10 +28,7 @@ private val utilityModule = module {
 
 private val domainModule = module {
     single<PhotoRepository> { PhotoRepositoryImpl(get()) }
-    // factory { GetPhotosUseCase() }
-
-    factory { GetPhotosUseCase(get())}
-    factory { GetPhotosUseCaseIos() }
+    factory { GetPhotosUseCase() }
 }
 
 private val sharedModules = listOf(domainModule, dataModule, utilityModule)

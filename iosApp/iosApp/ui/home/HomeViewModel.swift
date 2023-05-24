@@ -12,7 +12,7 @@ import shared
 extension HomeScreen {
     @MainActor class HomeViewModel: ObservableObject {
         
-        private let getPhotosUseCase = GetPhotosUseCaseIos.init()
+        private let getPhotosUseCase = GetPhotosUseCase.init()
         
         @Published private(set) var photos:[Photo] = []
         @Published private(set) var isLoading: Bool = false

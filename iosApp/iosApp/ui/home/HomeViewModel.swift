@@ -45,16 +45,18 @@ extension HomeScreen {
                         self.photos = self.photos + photos
                     }
                     
-                    noResult = photos.isEmpty
+                    noResult = self.photos.isEmpty
                 } catch {
                     isLoading = false
                     loadFinished = true
+                    noResult = false
                     
                     print(error.localizedDescription)
-                }
+                 }
             } else {
                 isLoading = false
                 loadFinished = true
+                noResult = false
             }
         }
         

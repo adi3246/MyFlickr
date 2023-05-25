@@ -1,8 +1,14 @@
 PODS:
   - shared (1.0)
+  - SwiftCoroutine (2.1.11)
 
 DEPENDENCIES:
   - shared (from `../shared`)
+  - SwiftCoroutine (~> 2.1)
+
+SPEC REPOS:
+  trunk:
+    - SwiftCoroutine
 
 EXTERNAL SOURCES:
   shared:
@@ -10,7 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   shared: 2d3b24a8fe27b7d9e65b8d075a9672fbc6a1aa10
+  SwiftCoroutine: b584780401083a0c41323ef1af07c2effe369dce
 
-PODFILE CHECKSUM: f282da88f39e69507b0a255187c8a6b644477756
+PODFILE CHECKSUM: 400d0eac20ffa78235af3642c9cce0f8f755ee6d
 
 COCOAPODS: 1.12.0
